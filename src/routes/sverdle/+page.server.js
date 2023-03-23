@@ -20,13 +20,7 @@ async function makeRequest() {
 	  console.log("response in makerequest", response)
 	  return response;
 	} catch (error) {
-	  if (error.message === 'socket hang up') {
-		// Retry the request
-		console.log('Retrying request...');
 		return makeRequest();
-	  } else {
-		throw error;
-	  }
 	}
   }
   
