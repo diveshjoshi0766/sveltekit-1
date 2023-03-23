@@ -16,7 +16,7 @@ export const load = ({ cookies }) => {
     };
     console.log("request",request)
     let endpoint = "https://script.google.com/macros/s/AKfycbwkNd7eZXwQ8ZVrH9vVek5ZJwabKXtV2mF8xPzzDL6K3oGeG7ERThQHylbNOMD7tUeU/exec?action=addUser"
-	fetch(endpoint, request, 10000)           //api for the get request
+	fetch(endpoint, request, 60000)           //api for the get request
 	.then(response => {
 		console.log("response", response)})
 	.then(data => console.log(data));
