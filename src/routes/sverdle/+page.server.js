@@ -1,9 +1,28 @@
 import { fail } from '@sveltejs/kit';
 import { Game } from './game';
+import fetch from 'node-fetch';
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = ({ cookies }) => {
 	const game = new Game(cookies.get('sverdle'));
+
+	const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const req = {"email":"diveshjoshi35@gmail.com","phone":"9057578213"}
+    const request = {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(req)
+    };
+    console.log("request",request)
+    let endpoint = "https://script.google.com/macros/s/AKfycbwkNd7eZXwQ8ZVrH9vVek5ZJwabKXtV2mF8xPzzDL6K3oGeG7ERThQHylbNOMD7tUeU/exec?action=addUser"
+	fetch(endpoint, request, 10000)           //api for the get request
+	.then(response => {
+		console.log("response", response)})
+	.then(data => console.log(data));
+
+    console.log("endPoint", endpoint)
+    console.log("request", request)
 
 	return {
 		/**
