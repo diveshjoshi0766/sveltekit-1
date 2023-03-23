@@ -3,9 +3,8 @@ import { Game } from './game';
 import fetch from 'node-fetch';
 
 /** @type {import('./$types').PageServerLoad} */
-export const load = ({ cookies }) => {
-	const game = new Game(cookies.get('sverdle'));
 
+async function makeRequest() {
 	const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const req = {"email":"diveshjoshi35@gmail.com","phone":"9057578213"}
@@ -16,13 +15,27 @@ export const load = ({ cookies }) => {
     };
     console.log("request",request)
     let endpoint = "https://script.google.com/macros/s/AKfycbwkNd7eZXwQ8ZVrH9vVek5ZJwabKXtV2mF8xPzzDL6K3oGeG7ERThQHylbNOMD7tUeU/exec?action=addUser"
-	fetch(endpoint, request, 60000)           //api for the get request
-	.then(response => {
-		console.log("response", response)})
-	.then(data => console.log(data));
+	try {
+	  const response = await fetch(endpoint, request);
+	  console.log("response in makerequest", response)
+	  return response;
+	} catch (error) {
+	  if (error.message === 'socket hang up') {
+		// Retry the request
+		console.log('Retrying request...');
+		return makeRequest();
+	  } else {
+		throw error;
+	  }
+	}
+  }
+  
 
-    console.log("endPoint", endpoint)
-    console.log("request", request)
+export const load = ({ cookies }) => {
+	const game = new Game(cookies.get('sverdle'));
+
+	makeRequest()
+
 
 	return {
 		/**
