@@ -27,7 +27,7 @@ async function makeRequest() {
 
 export const load = ({ cookies }) => {
 	const game = new Game(cookies.get('sverdle'));
-
+	console.log("makeRequest called")
 	makeRequest()
 
 
