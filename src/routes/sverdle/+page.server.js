@@ -19,7 +19,7 @@ async function makeRequest() {
 
 	console.log("fetch request called")
 	let status = null;
-	fetch(endpoint, request, 60000)
+	await fetch(endpoint, request, 60000)
 	.then(res => {
 		status = res.status;
 		console.log("response status --> ", res.status)
