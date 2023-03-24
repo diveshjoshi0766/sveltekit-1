@@ -23,7 +23,7 @@ async function makeRequest() {
 		return response;
 	} catch (error) {
 		console.log("error", error)
-		// return makeRequest();
+		return makeRequest();
 	}
   }
   
