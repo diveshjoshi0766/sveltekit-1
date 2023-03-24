@@ -16,16 +16,22 @@ async function makeRequest() {
     };
     console.log("request",request)
     let endpoint = "https://script.google.com/macros/s/AKfycbwkNd7eZXwQ8ZVrH9vVek5ZJwabKXtV2mF8xPzzDL6K3oGeG7ERThQHylbNOMD7tUeU/exec?action=addUser"
-	try {
-		console.log("fetch request called")
-		const response = await fetch(endpoint, request);
-		console.log("response in makerequest", response)
-		return response;
-	} catch (error) {
-		console.log("error", error)
-		return makeRequest();
+
+	console.log("fetch request called")
+	let status = null;
+	fetch(endpoint, request, 60000)
+	.then(res => {
+		status = res.status;
+		console.log("response status --> ", res.status)
+		console.log("resp after fetch called --- ", res)
+	})
+	.then(res => {
+		if (status === 500){
+			makeRequest()
+		}
+		console.log("response after second promise resolve --> ", res)
+	})
 	}
-  }
   
 
 export const load = ({ cookies }) => {
