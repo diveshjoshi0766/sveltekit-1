@@ -18,7 +18,7 @@ async function makeRequest() {
     let endpoint = "https://script.google.com/macros/s/AKfycbwkNd7eZXwQ8ZVrH9vVek5ZJwabKXtV2mF8xPzzDL6K3oGeG7ERThQHylbNOMD7tUeU/exec?action=addUser"
 	try {
 		console.log("fetch request called")
-		const response = await fetch(endpoint, request, {timeout: 120000});
+		const response = await fetch(endpoint, request);
 		console.log("response in makerequest", response)
 		return response;
 	} catch (error) {
