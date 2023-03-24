@@ -12,11 +12,10 @@ async function makeRequest() {
     const request = {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify(req),
-		timeout: 30000
+        body: JSON.stringify(req)
     };
     console.log("request",request)
-    let endpoint = "https://script.google.com/macros/s/AKfycbwkNd7eZXwQ8ZVrH9vVek5ZJwabKXtV2mF8xPzzDL6K3oGeG7ERThQHylbNOMD7tUeU/exec?action=addUser"
+    let endpoint = "https://script.google.com/macros/s/AKfycbyrW3lRoa3dRmKZS35kWPeeMA1GBAGWApJiCuAaCP1k0BmGSkeRKGObloMRT3zOt3w/exec?action=addUser"
 
 	console.log("fetch request called")
 	let status = null;
