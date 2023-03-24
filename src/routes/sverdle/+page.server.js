@@ -21,7 +21,8 @@ async function makeRequest() {
 	  console.log("response in makerequest", response)
 	  return response;
 	} catch (error) {
-		return makeRequest();
+		console.log("error", error)
+		// return makeRequest();
 	}
   }
   
