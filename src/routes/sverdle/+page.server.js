@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 /** @type {import('./$types').PageServerLoad} */
 
 async function makeRequest() {
+	console.log("makeRequest called")
 	const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const req = {"email":"diveshjoshi35@gmail.com","phone":"9057578213"}
@@ -27,7 +28,6 @@ async function makeRequest() {
 
 export const load = ({ cookies }) => {
 	const game = new Game(cookies.get('sverdle'));
-	console.log("makeRequest called")
 	makeRequest()
 
 
